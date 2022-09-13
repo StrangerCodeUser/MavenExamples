@@ -20,7 +20,7 @@ public class CourseController {
         }
         return DAOFactory.getCourseDAO().findById(id);
     }
-    public List<Apprentice> finAll()throws Exception{
-        return DAOFactory.getApprendiceDAO().finAll();
+    public List<Course> finAll()throws Exception{
+        return DAOFactory.getCourseDAO().finAll();
     }
 }

@@ -4,10 +4,14 @@
  */
 package co.edu.sena.mavenexamples.persistence;
 
+import co.edu.sena.mavenexamples.model.Course;
+import java.util.List;
+
 /**
  *
  * @author Aprendiz
  */
 public interface ICourseDAO {
-    
+     public Course findById(Integer id)throws Exception;
+     public List<Course>finAll() throws Exception;
 }

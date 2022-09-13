@@ -4,6 +4,9 @@
  */
 package co.edu.sena.mavenexamples.view;
 
+import co.edu.sena.mavenexamples.controller.ApprenticeContoller;
+import co.edu.sena.mavenexamples.utils.MessageUtils;
+
 /**
  *
  * @author Aprendiz
@@ -44,6 +47,11 @@ public class JFrameMainApprentience extends javax.swing.JFrame {
         jLabelAutor.setText("Autor");
 
         jButtonSend.setText("Enviar");
+        jButtonSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSendActionPerformed(evt);
+            }
+        });
 
         jButtonClear.setText("Limpiar");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +125,24 @@ public class JFrameMainApprentience extends javax.swing.JFrame {
         jTextFieldAutor.setText("");
         jTextFieldFor.requestFocus();
     }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jButtonSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSendActionPerformed
+        // TODO add your handling code here:
+        ApprenticeContoller appretienceController= new ApprenticeContoller();
+        String to = jTextFieldFor.getText();
+        String subject= jLabelAutor.getText();
+        if (to.isEmpty()|| subject.isEmpty()) {
+            MessageUtils.showErrorMessage("Los datos son obligatorios");
+            
+        }else{
+            try {
+                appretienceController.sendEmail(to, subject);
+                 MessageUtils.showInfoMessage("correo enviado exitosamente");
+            } catch (Exception ex) {
+               MessageUtils.showErrorMessage(ex.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButtonSendActionPerformed
 
     /**
      * @param args the command line arguments
